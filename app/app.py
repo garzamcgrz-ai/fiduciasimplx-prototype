@@ -11,7 +11,8 @@ DATA_DIR = BASE_DIR / "data"
 st.set_page_config(page_title="FiduciaSimplx — OK Tax Tracker (Prototype)", layout="wide")
 
 @st.cache_data(ttl=3600)
-def load_sample_data():
+def
+():
     # load the small sample CSV included in the repo
     sales = pd.read_csv(DATA_DIR / "sample_otc_collections.csv", parse_dates=["date"])
     # simple mock feed from the same file for demo purpose
@@ -22,8 +23,9 @@ def load_sample_data():
 
 sales_df, feed_df, counties_geo = load_sample_data()
 
-def compute_latest_metrics():
-    def agg_latest(df, col_name):
+def():
+    def
+    (df, col_name):
         last = df[df["category"] == col_name].sort_values("date").tail(1)
         if last.empty:
             return {"value": 0, "pct_change": 0}
@@ -35,7 +37,8 @@ def compute_latest_metrics():
     categories = ["Sales", "Individual Income", "Business/Franchise", "Property", "Trusts"]
     return {cat: agg_latest(sales_df, cat) for cat in categories}
 
-def render_ticker(latest_values):
+def
+(latest_values):
     cols = st.columns(len(latest_values))
     for c, (label, v) in zip(cols, latest_values.items()):
         delta = v["pct_change"]
