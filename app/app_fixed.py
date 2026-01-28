@@ -14,6 +14,6 @@ DATA_FILE = DATA_DIR / "sample_otc_collections.csv"
 
 st.set_page_config(page_title="FiduciaSimplx — OK Tax Tracker (Prototype)", layout="wide")
 
-@st.cache()
+@st.cache_data
 def load_sample_data(path: Path): 
 	df = pd.read_csv(path, parse_dates=["date"])
