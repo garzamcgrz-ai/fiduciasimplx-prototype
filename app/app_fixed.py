@@ -4,7 +4,7 @@ import pandas as pd
 
 import numpy as np
 
-import pathlib from Path
+from pathlib import Path
 
 import plotly.express as px
 

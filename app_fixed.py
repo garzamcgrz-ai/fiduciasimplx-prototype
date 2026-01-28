@@ -1,8 +1,3 @@
-import streamlit as st import pandas as pd import numpy as np from pathlib import Path import plotly.express as px
-import streamlit as st 
-import pandas as pd 
-import numpy as np from pathlib 
-import Path 
 import streamlit as st
 
 import pandas as pd
@@ -15,7 +10,7 @@ import plotly.express as px
 
 BASE_DIR = Path(file).resolve().parent DATA_DIR = BASE_DIR / "data" DATA_FILE = DATA_DIR / "sample_otc_collections.csv"
 st.set_page_config(page_title="FiduciaSimplx — OK Tax Tracker (Prototype)", layout="wide")
-@st.cache() def load_sample_data(path: Path): df = pd.read_csv(path, parse_dates=["date"]) # normalize column names df.columns = [c.strip() for c in df.columns] # ensure expected columns exist if "amount" in df.columns: df["amount"] = pd.to_numeric(df["amount"], errors="coerce").fillna(0.0) else: df["amount"] = 0.0 if "date" not in df.columns: df["date"] = pd.NaT df = df.sort_values("date") return df
+@st.cache_data def load_sample_data(path: Path): df = pd.read_csv(path, parse_dates=["date"]) # normalize column names df.columns = [c.strip() for c in df.columns] # ensure expected columns exist if "amount" in df.columns: df["amount"] = pd.to_numeric(df["amount"], errors="coerce").fillna(0.0) else: df["amount"] = 0.0 if "date" not in df.columns: df["date"] = pd.NaT df = df.sort_values("date") return df
 Load data (if missing file, show error)
 try: df = load_sample_data(DATA_FILE) except FileNotFoundError: st.error(f"Data file not found: {DATA_FILE}. Make sure data/sample_otc_collections.csv exists.") st.stop()
 Sidebar controls
